@@ -9,7 +9,7 @@ app:get("/", function()
   local hour = tonumber(os.date("%H") +1)
   -- retrieve the content of a URL
   local http = require("socket.http")
-  local body, code = http.request("http://russellthackston.me/etl/sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
+  local body, code = http.request("https://russellthackston.me/etl/sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
   if not body then
     error(code)
   end
