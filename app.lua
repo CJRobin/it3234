@@ -22,17 +22,19 @@ app:get("/", function()
   -- local content = file:read("*a")
   -- print(content)
 
-  function download(url, file)
-    local content = http.get(url).readAll()
-    if not content then
-      error("Could not connect to website")
-    end
-    f = fs.open(file, "w")
-    f.write(content)
-    print(content);
-    f.close()
-  end
+
   return "Welcome to apps new " .. require("lapis.version")
 end)
+
+function download(url, file)
+  local content = http.get(url).readAll()
+  if not content then
+    error("Could not connect to website")
+  end
+  f = fs.open(file, "w")
+  f.write(content)
+  print(content);
+  f.close()
+end
 
 return app
