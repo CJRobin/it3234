@@ -13,7 +13,7 @@ app:get("/", function()
   if not body then
     error(code)
   end
-  local f = assert(io.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", 'w+')) -- open in "binary" mode
+  local f = assert(io.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", 'wb')) -- open in "binary" mode
   f:write(body)
   f:close()
 
