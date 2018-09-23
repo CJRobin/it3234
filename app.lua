@@ -7,7 +7,7 @@ app:get("/", function()
   local month = os.date("%m")
   local day = os.date("%d")
   local hour = tonumber(os.date("%H") +1)
-  print(os.date("%Y_%m_%d_%H"))
+  print(hour)
   local f = csv.open("https://russellthackston.me/etl/sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
   for fields in f:lines() do
     for i, v in ipairs(fields) do
