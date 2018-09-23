@@ -17,12 +17,9 @@ app:get("/", function()
   f:write(body)
   f:close()
 
-  local q = csv.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
-  for fields in q:lines() do
-    for i, v in ipairs(fields) do
-      print(fields)
-    end
-  end
+  local r = io.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", "rb")
+  local content = file:read("*a")
+  print(content)
   return "Welcome to apps new " .. require("lapis.version")
 end)
 
