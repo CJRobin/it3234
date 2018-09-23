@@ -17,7 +17,7 @@ app:get("/", function()
   f:write(body)
   f:close()
 
-  local r = io.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", "rb")
+  local file = io.open("sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", "rb")
   local content = file:read("*a")
   print(content)
   return "Welcome to apps new " .. require("lapis.version")
