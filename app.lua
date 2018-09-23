@@ -1,6 +1,6 @@
 local lapis = require("lapis")
 local app = lapis.Application()
-
+local http = require("socket.http")
 app:get("/", function()
   local csv = require("csv")
   local year = os.date("%Y")
@@ -9,7 +9,7 @@ app:get("/", function()
   local hour = tonumber(os.date("%H") +1)
 
   download("https://russellthackston.me/etl/sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv", "sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
-  -- local http = require("socket.http")
+
   -- local body, code = http.request("https://russellthackston.me/etl/sensordata_" .. year .. "_" .. month .. "_" .. day .. "_" .. hour .. ".csv")
   -- if not body then
   --   error(code)
