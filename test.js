@@ -1,6 +1,7 @@
 var https = require('https');
 var fs = require('fs');
-
+var request=require('request');
+const Json2csvParser = require('json2csv').Parser;
 
 var download = function(url, dest, cb) {
   var file = fs.createWriteStream(dest);
@@ -14,6 +15,7 @@ var download = function(url, dest, cb) {
     if (cb) cb(err.message);
   });
 }
+let items = []
 const date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth()+1;
@@ -31,13 +33,33 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
   const csv=require('csvtojson')
   csv()
   .fromFile(csvFilePath)
-  .then((jsonObj)=>{
-      console.log(jsonObj);
-      /**
-       * [
-       * 	{a:"1", b:"2", c:"3"},
-       * 	{a:"4", b:"5". c:"6"}
-       * ]
-       */
+  .then((json)=>{
+      console.log(json);
+      for (i=0; i < json.length; i++) {
+        if(json[i]['battery charge'] < 5) {
+          items.push(json[i]);
+        }
+      }
+      const json2csvParser = new Json2csvParser({ ['type', 'id', 'name', 'battery charge'] });
+      const csv = json2csvParser.parse(items);
+      console.log(csv);
+
+      // const options = {
+      //     method: "POST",
+      //     url: "https://russellthackston.me/etl-drop/index.php",
+      //     port: 443,
+      //     headers: {
+      //         "Authorization": "Basic " + auth,
+      //         "Content-Type": "multipart/form-data"
+      //     },
+      //     formData : {
+      //         "image" : fs.createReadStream("./images/scr1.png")
+      //     }
+      // };
+      //
+      // request(options, function (err, res, body) {
+      //     if(err) console.log(err);
+      //     console.log(body);
+      // });
   });
 });
