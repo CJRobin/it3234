@@ -15,8 +15,17 @@ var download = function(url, dest, cb) {
   });
 }
 const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth();
-const day = date.getDate();
-const hour = date.getHours();
+let year = date.getFullYear();
+let month = date.getMonth();
+let day = date.getDate();
+let hour = date.getHours();
+if(month < 10) {
+  month = "0"+ month;
+}
+if(hour < 10) {
+  hour = "0"+ hour;
+}
+if(day < 10) {
+  day = "0"+ day;
+}
 download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
