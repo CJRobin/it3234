@@ -41,6 +41,3 @@ csv()
      * ]
      */
 })
-
-// Async / await usage
-const jsonArray=await csv().fromFile(csvFilePath);
