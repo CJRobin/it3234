@@ -28,7 +28,7 @@ if(day < 10) {
 }
 download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
 
-const csvFilePath=`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`
+const csvFilePath='file.csv'
 const csv=require('csvtojson')
 csv()
 .fromFile(csvFilePath)
