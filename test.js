@@ -19,9 +19,7 @@ let year = date.getFullYear();
 let month = date.getMonth()+1;
 let day = date.getDate();
 let hour = date.getHours();
-if(month < 10) {
-  month = "0"+ month;
-}
+month = month < 10 ? month = "0"+ month : month;
 if(hour < 10) {
   hour = "0"+ hour;
 }
@@ -29,3 +27,16 @@ if(day < 10) {
   day = "0"+ day;
 }
 download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
+
+var stream = fs.createReadStream("file.csv");
+
+var csvStream = csv()
+    .on("data", function(data){
+         console.log(data);
+    })
+    .on("end", function(){
+         console.log("done");
+    });
+
+stream.pipe(csvStream);
+ 
