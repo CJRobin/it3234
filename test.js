@@ -19,4 +19,4 @@ const year = date.getFullYear();
 const month = date.getMonth();
 const day = date.getDate();
 const hour = date.getHours();
-download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
+download(`http://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
