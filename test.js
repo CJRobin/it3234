@@ -14,7 +14,7 @@ var download = function(url, dest, cb) {
     if (cb) cb(err.message);
   });
 }
-const date = Date().now();
+const date = Date.now();
 const year = date.getFullYear();
 const month = date.getMonth();
 const day = date.getDate();
