@@ -1,6 +1,5 @@
 var https = require('https');
 var fs = require('fs');
-var csv = require('fast-csv');
 
 
 var download = function(url, dest, cb) {
@@ -29,15 +28,19 @@ if(day < 10) {
 }
 download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv')
 
-var stream = fs.createReadStream("file.csv");
+const csvFilePath='file.csv'
+const csv=require('csvtojson')
+csv()
+.fromFile(csvFilePath)
+.then((jsonObj)=>{
+    console.log(jsonObj);
+    /**
+     * [
+     * 	{a:"1", b:"2", c:"3"},
+     * 	{a:"4", b:"5". c:"6"}
+     * ]
+     */
+})
 
-var csvStream = csv
-    .parse()
-    .on("data", function(data){
-         console.log(data);
-    })
-    .on("end", function(){
-         console.log("done");
-    });
-
-stream.pipe(csvStream);
+// Async / await usage
+const jsonArray=await csv().fromFile(csvFilePath);
