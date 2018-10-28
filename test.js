@@ -26,7 +26,7 @@ if(hour < 10) {
 if(day < 10) {
   day = "0"+ day;
 }
-download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv'. function(){
+download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${hour}.csv`, 'file.csv', function() {
   const csvFilePath='file.csv'
   const csv=require('csvtojson')
   csv()
@@ -39,5 +39,5 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
        * 	{a:"4", b:"5". c:"6"}
        * ]
        */
-  })
+  });
 });
