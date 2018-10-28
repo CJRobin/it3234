@@ -57,7 +57,7 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
                   "Content-Type": "multipart/form-data"
               },
               formData : {
-                  "file" : fs.createReadStream("newfile.csv")
+                  "file" : fs.createReadStream(`sensordata_${year}_${month}_${day}_${hour}.csv`)
               }
           };
 
