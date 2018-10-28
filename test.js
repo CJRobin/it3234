@@ -1,5 +1,6 @@
 var https = require('https');
 var fs = require('fs');
+var csv = require('fast-csv');
 
 
 var download = function(url, dest, cb) {
