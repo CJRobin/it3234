@@ -44,23 +44,29 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
       const json2csvParser = new Json2csvParser({ fields });
       const csv = json2csvParser.parse(items);
       console.log(csv);
+      fs.writeFile("newfile.csv", csv, function(err) {
+          if(err) {
+              return console.log(err);
+          }
+          const options = {
+              method: "POST",
+              url: "https://russellthackston.me/etl-drop/index.php",
+              port: 443,
+              headers: {
+                  "Authorization": "Basic " + auth,
+                  "Content-Type": "multipart/form-data"
+              },
+              formData : {
+                  "file" : fs.createReadStream("newfile.csv")
+              }
+          };
 
-      // const options = {
-      //     method: "POST",
-      //     url: "https://russellthackston.me/etl-drop/index.php",
-      //     port: 443,
-      //     headers: {
-      //         "Authorization": "Basic " + auth,
-      //         "Content-Type": "multipart/form-data"
-      //     },
-      //     formData : {
-      //         "image" : fs.createReadStream("./images/scr1.png")
-      //     }
-      // };
-      //
-      // request(options, function (err, res, body) {
-      //     if(err) console.log(err);
-      //     console.log(body);
-      // });
+          request(options, function (err, res, body) {
+              if(err) console.log(err);
+              console.log(body);
+          });
+
+      });
+
   });
 });
