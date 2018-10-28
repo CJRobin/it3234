@@ -13,6 +13,7 @@ var download = function(url, dest, cb) {
     fs.unlink(dest); // Delete the file async. (But we don't check the result)
     if (cb) cb(err.message);
   });
+}
 const date = Date().now();
 const year = date.getFullYear();
 const month = date.getMonth();
