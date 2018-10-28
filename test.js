@@ -18,9 +18,9 @@ var download = function(url, dest, cb) {
 let items = []
 const date = new Date();
 let year = date.getFullYear();
-let month = date.getMonth()+1;
-let day = date.getDate();
-let hour = date.getHours();
+let month = date.getUTCMonth()+1;
+let day = date.getUTCDate();
+let hour = date.getUTCHours();
 month = month < 10 ? month = "0"+ month : month;
 if(hour < 10) {
   hour = "0"+ hour;
@@ -44,7 +44,7 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
       const json2csvParser = new Json2csvParser({ fields });
       const csv = json2csvParser.parse(items);
       console.log(csv);
-      fs.writeFile(`sensordata_${year}_${month}_${day}_${date.getUTCHours()}.csv`, csv, function(err) {
+      fs.writeFile(`sensordata_${year}_${month}_${day}_${hour}.csv`, csv, function(err) {
           if(err) {
               return console.log(err);
           }
@@ -57,7 +57,7 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
                   "Content-Type": "multipart/form-data"
               },
               formData : {
-                  "file" : fs.createReadStream(`sensordata_${year}_${month}_${day}_${date.getUTCHours()}.csv`)
+                  "file" : fs.createReadStream(`sensordata_${year}_${month}_${day}_${hour}.csv`)
               }
           };
 
