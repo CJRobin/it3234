@@ -30,7 +30,8 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
 
 var stream = fs.createReadStream("file.csv");
 
-var csvStream = csv()
+var csvStream = csv
+    .parse()
     .on("data", function(data){
          console.log(data);
     })
@@ -39,4 +40,3 @@ var csvStream = csv()
     });
 
 stream.pipe(csvStream);
- 
