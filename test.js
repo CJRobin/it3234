@@ -40,7 +40,8 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
           items.push(json[i]);
         }
       }
-      const json2csvParser = new Json2csvParser({ ['type', 'id', 'name', 'battery charge'] });
+      const fields = ['type', 'id', 'name', 'battery charge']
+      const json2csvParser = new Json2csvParser({ fields });
       const csv = json2csvParser.parse(items);
       console.log(csv);
 
