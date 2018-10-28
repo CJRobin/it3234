@@ -53,7 +53,7 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
               url: "https://russellthackston.me/etl-drop/index.php",
               port: 443,
               headers: {
-                  "Authorization": "Basic " + auth,
+                  "Authorization": "Basic 9b03bce9b78c54c0d2c5882ebee645b0",
                   "Content-Type": "multipart/form-data"
               },
               formData : {
