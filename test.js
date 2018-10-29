@@ -44,6 +44,7 @@ download(`https://russellthackston.me/etl/sensordata_${year}_${month}_${day}_${h
       const json2csvParser = new Json2csvParser({ fields });
       const csv = json2csvParser.parse(items);
       console.log(csv);
+      csv = csv.replace('"', '');
       fs.writeFile(`sensordata_${year}_${month}_${day}_${hour}.csv`, csv, function(err) {
           if(err) {
               return console.log(err);
