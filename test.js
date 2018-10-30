@@ -47,7 +47,7 @@ cron.schedule('10 * * * *', function(){
         const fields = ['type', 'id', 'name', 'battery charge']
         const json2csvParser = new Json2csvParser({ fields });
         let csv = json2csvParser.parse(items);
-        newCSV = csv.replace('"', '');
+        newCSV = csv.replace(/"/g, '');
         console.log(newCSV);
         fs.writeFile(`sensordata_${year}_${month}_${day}_${hour}.csv`, newCSV, function(err) {
             if(err) {
